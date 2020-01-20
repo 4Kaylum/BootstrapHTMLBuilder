@@ -1,6 +1,6 @@
 import typing
 
-from bootstrap.node import HTMLNode
+from bootstrap_builder.node import HTMLNode
 
 
 class BootstrapNode(HTMLNode):

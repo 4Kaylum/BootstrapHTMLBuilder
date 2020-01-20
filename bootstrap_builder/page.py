@@ -1,7 +1,7 @@
 import typing
 
 # from bootstrap.node import HTMLNode
-from bootstrap.bootstrap_node import BootstrapNode
+from bootstrap_builder.bootstrap_node import BootstrapNode
 
 
 class HTMLPage(BootstrapNode):
