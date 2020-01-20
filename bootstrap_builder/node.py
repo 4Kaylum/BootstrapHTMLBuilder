@@ -10,6 +10,8 @@ class HTMLNode(object):
             children = [children]
         self.children: typing.List[typing.Union[str, 'HTMLNode']] = children or list()
         self.attrs = attrs or {}
+        classes = self.attrs.pop('class', '').split(' ')
+        self['class'] = classes
 
     def __getitem__(self, key):
         """Gets a given item from the node"""
