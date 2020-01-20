@@ -7,7 +7,7 @@ except FileNotFoundError:
     long_description = ""
 
 setuptools.setup(
-    name="bootstrap-builder-4Kaylum",
+    name="bootstrap-builder",
     version="0.0.2",
     author="Callum Bartlett",
     author_email="bartlett.c@outlook.com",
