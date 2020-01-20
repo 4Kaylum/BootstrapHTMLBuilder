@@ -70,6 +70,9 @@ class HTMLPage(BootstrapNode):
         return v
 
     def __str__(self) -> str:
+        return self.to_string()
+
+    def to_string(self, *, indent:bool=True) -> str:
         """Converts the page nicely into HTML"""
 
         # Add our bootstrap external libs as necessary
@@ -126,4 +129,6 @@ class HTMLPage(BootstrapNode):
         html.add_child(copy)
 
         # Return HTML
-        return '<!DOCTYPE html>\n' + str(html) + '\n'
+        if indent:
+            return '<!DOCTYPE html>\n' + html.to_string(indent=indent) + '\n'
+        return '<!DOCTYPE html>' + html.to_string(indent=indent) + '\n'

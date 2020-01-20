@@ -66,6 +66,9 @@ class HTMLNode(object):
         self.children.append(child)
 
     def __str__(self) -> str:
+        return self.to_string()
+
+    def to_string(self, indent:bool=True) -> str:
         """Converts the given object into an HTML string"""
 
         # Fix the node attrs
@@ -75,8 +78,9 @@ class HTMLNode(object):
         attr_string = [f'{i}="{o}"' for i, o in fixed_attrs.items()]
 
         # Return HTML string
-        TAB = "\t"
-        ENDL = "\n"
+        TAB = "\t" if indent else ""
+        ENDL = "\n" if indent else ""
+        WRAP = textwrap.indent if indent else lambda string, _: string
         if len(self.children) == 1 and type(self.children[0]) == str:
             return (
                 f"<{self.tag}"
@@ -90,7 +94,7 @@ class HTMLNode(object):
                 f"{' ' if len(attr_string) > 0 else ''}{' '.join(attr_string)}"
                 f"{' ' if len(non_tagged) > 0 else ''}{non_tagged}"
                 f">{ENDL}"
-                f"{ENDL.join([textwrap.indent(str(i), TAB) for i in self.children])}"
+                f"{ENDL.join([WRAP(i.to_string(indent=indent), TAB) for i in self.children])}"
                 f"{ENDL}</{self.tag}>"
             )
         return (
